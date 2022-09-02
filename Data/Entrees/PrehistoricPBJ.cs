@@ -6,6 +6,11 @@
     public class PrehistoricPBJ
     {
         /// <summary>
+        /// The name of the PBJ
+        /// </summary>
+        public string Name { get; } = "PrehistoricPBJ";
+
+        /// <summary>
         /// Indicates if the PBJ was made with peanut butter
         /// </summary>
         public bool PeanutButter { get; set; } = true;
