@@ -8,7 +8,7 @@
         /// <summary>
         /// The name of the PBJ
         /// </summary>
-        public string Name { get; } = "PrehistoricPBJ";
+        public string Name { get; } = "Prehistoric PBJ";
 
         /// <summary>
         /// Indicates if the PBJ was made with peanut butter
