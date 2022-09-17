@@ -10,27 +10,27 @@ namespace DinoDiner.Data.Entrees
     /// <summary>
     /// A class representing a customizable serving of Pterodactyl Wings
     /// </summary>
-    public class PterodactylWings
+    public class PterodactylWings : Entree
     {
         /// <summary>
         /// Name of the Chicken Wings
         /// </summary>
-        public string Name { get { return $"{Sauce} Pterdactyl Wings"; } }
+        public override string Name { get { return $"{Sauce} Pterdactyl Wings"; } }
 
         /// <summary>
         /// Sauce on the Pterodactyl Wings
         /// </summary>
-        public WingSauce Sauce { get; set; } = WingSauce.Buffalo;
+        public  WingSauce Sauce { get; set; } = WingSauce.Buffalo;
 
         /// <summary>
         /// Price of the Pterodactyl Wings
         /// </summary>
-        public decimal Price { get; } = 8.95m;
+        public override decimal Price { get; } = 8.95m;
 
         /// <summary>
         /// Calories in the Pterodactyl Wings calculated based on the sauce
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {

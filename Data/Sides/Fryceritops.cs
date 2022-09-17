@@ -10,12 +10,12 @@ namespace DinoDiner.Data.Sides
     /// <summary>
     /// A class that represents a customizable order of Fryceritops
     /// </summary>
-    public class Fryceritops
+    public class Fryceritops : Side
     {
         /// <summary>
         /// Name of the French fries
         /// </summary>
-        public string Name { get { return $"{Size} Fryceritops"; } }
+        public override string Name { get { return $"{Size} Fryceritops"; } }
 
         /// <summary>
         /// True if the Fryceritops have salt on them, defaults to true
@@ -28,14 +28,9 @@ namespace DinoDiner.Data.Sides
         public bool Sauce { get; set; } = false;
 
         /// <summary>
-        /// Size of the order
-        /// </summary>
-        public ServingSize Size { get; set; }
-
-        /// <summary>
         /// Price of the order based on the the size
         /// </summary>
-        public decimal Price
+        public override decimal Price
         {
             get
             {
@@ -52,7 +47,7 @@ namespace DinoDiner.Data.Sides
         /// <summary>
         /// Calories of the order based on the size and the sauce
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {

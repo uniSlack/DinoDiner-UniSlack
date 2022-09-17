@@ -10,39 +10,17 @@ namespace DinoDiner.Data.Sides
     /// <summary>
     /// A class that represents a customizable order of Mezzorella Sticks
     /// </summary>
-    internal class MezzorellaSticks
+    public class MezzorellaSticks : Side
     {
         /// <summary>
         /// Name of the the deep-fried mozzarella sticks
         /// </summary>
-        public string Name { get { return $"{Size} Mezzorella Sticks"; } }
-
-        /// <summary>
-        /// Size of the order
-        /// </summary>
-        public ServingSize Size { get; set; }
+        public override string Name { get { return $"{Size} Mezzorella Sticks"; } }
 
         /// <summary>
         /// Price of the order based on the size
         /// </summary>
-        public decimal Price
-        {
-            get
-            {
-                switch (Size)
-                {
-                    case ServingSize.Small: return 3.50m;
-                    case ServingSize.Medium: return 4.00m;
-                    case ServingSize.Large:
-                    default: return 5.25m;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Price of the order based on the size
-        /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {

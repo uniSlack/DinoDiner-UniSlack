@@ -9,12 +9,12 @@ namespace DinoDiner.Data.Entrees
     /// <summary>
     /// A class represeting a customizable serving of Dino Nuggets
     /// </summary>
-    public class DinoNuggets
+    public class DinoNuggets : Entree
     {
         /// <summary>
         /// Name of the chicken nuggets
         /// </summary>
-        public string Name { get { return $"{Count} Dino Nuggets"; } }
+        public override string Name { get { return $"{Count} Dino Nuggets"; } }
 
         /// <summary>
         /// Count of the Dino Nuggets
@@ -24,11 +24,11 @@ namespace DinoDiner.Data.Entrees
         /// <summary>
         /// Price of the Dino Nuggets calculated per nugget
         /// </summary>
-        public decimal Price { get { return (Count * .25m); } }
+        public override decimal Price { get { return (Count * .25m); } }
 
         /// <summary>
         /// Calories in the Dino Nuggers calculated per nugget
         /// </summary>
-        public uint Calories { get { return (Count * 61); } }
+        public override uint Calories { get { return (Count * 61); } }
     }
 }
