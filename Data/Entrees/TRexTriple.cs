@@ -20,7 +20,7 @@ namespace DinoDiner.Data.Entrees
         /// <summary>
         /// Constructs the T-Rex Triple
         /// </summary>
-        TRexTriple()
+        public TRexTriple()
         {
             Patties = 3;
             Ketchup = true;

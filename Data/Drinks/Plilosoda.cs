@@ -37,7 +37,7 @@ namespace DinoDiner.Data.Drinks
         /// <summary>
         /// The name of the Pilosoda based on serving size and the flavor
         /// </summary>
-        public override string Name { get { return $"{Size} {FlavorString()} Pilosoda"; } }
+        public override string Name { get { return $"{Size} {FlavorString()} Plilosoda"; } }
 
         /// <summary>
         /// Represents the cost of the soda, based on size

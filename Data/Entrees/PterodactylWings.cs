@@ -15,7 +15,7 @@ namespace DinoDiner.Data.Entrees
         /// <summary>
         /// Name of the Chicken Wings
         /// </summary>
-        public override string Name { get { return $"{Sauce} Pterdactyl Wings"; } }
+        public override string Name { get {if(Sauce == WingSauce.HoneyGlaze) { return "Honey Glazed Pterodactyl Wings"; } ; return $"{Sauce} Pterodactyl Wings"; } }
 
         /// <summary>
         /// Sauce on the Pterodactyl Wings

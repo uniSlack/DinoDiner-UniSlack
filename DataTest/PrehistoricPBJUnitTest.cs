@@ -131,5 +131,39 @@ namespace DataTest
             };
             Assert.Equal(calories, pbj.Calories);
         }
+
+        /// <summary>
+        /// Should inhereit from Entree
+        /// </summary>
+        [Fact]
+        public void PrehistoricPBJShouldInheritFromEntree()
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            Assert.IsAssignableFrom<Entree>(pbj);
+        }
+        
+        /// <summary>
+        /// The name should be the same regardless of construction
+        /// </summary>
+        /// <param name="peanutButter">if pb is on it</param>
+        /// <param name="jelly">if jelly is on it</param>
+        /// <param name="toasted">if it is toatsted</param>
+        /// <param name="name">the required name</param>
+        [Theory]
+        [InlineData(true, true, true, "Prehistoric PBJ")]
+        [InlineData(true, true, false, "Prehistoric PBJ")]
+        [InlineData(true, false, true, "Prehistoric PBJ")]
+        [InlineData(false, true, true, "Prehistoric PBJ")]
+        [InlineData(false, false, true, "Prehistoric PBJ")]
+        [InlineData(true, false, false, "Prehistoric PBJ")]
+        [InlineData(false, false, false, "Prehistoric PBJ")]
+        public void NameShouldBeCorrect(bool peanutButter, bool jelly, bool toasted, string name)
+        {
+            PrehistoricPBJ pbj = new PrehistoricPBJ();
+            pbj.PeanutButter = peanutButter;
+            pbj.Jelly = jelly;
+            pbj.Toasted = toasted;
+            Assert.Equal(name, pbj.Name);
+        }
     }
 }
