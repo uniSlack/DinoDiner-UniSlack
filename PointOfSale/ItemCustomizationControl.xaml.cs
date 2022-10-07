@@ -27,10 +27,13 @@ namespace DinoDiner.PointOfSale
     /// </summary>
     public partial class ItemCustomizationControl : UserControl
     {
+
+        private int row = 1;
+        private int col = 0;
         /// <summary>
         /// Intializes the ItemCustomizationControl, dynamically creates controls for a given object, checkboxes for bool properties and combo boxes for enum based properties
         /// </summary>
-        public ItemCustomizationControl()
+        public ItemCustomizationControl(dynamic customizedItem)
         {
             InitializeComponent();
 
@@ -39,8 +42,8 @@ namespace DinoDiner.PointOfSale
 
 
             // For temp testing as events are not set up yet, just switch what is commented out to see examples.
-            dynamic customizedItem;
-            customizedItem = new AllosaurusAllAmericanBurger();
+            //dynamic customizedItem;
+            //customizedItem = new AllosaurusAllAmericanBurger();
             //customizedItem = new Brontowurst();
             //customizedItem = new Fryceritops();
             //customizedItem = new Plilosoda();
@@ -48,11 +51,10 @@ namespace DinoDiner.PointOfSale
 
             Type menuItemType = customizedItem.GetType();
 
-            EntreeCustomizationNameTextBlock.Text = $"{customizedItem.Name} ({customizedItem.Calories} cals)";
+            EntreeCustomizationNameTextBlock.Text = $"{customizedItem.Name} ({customizedItem.Calories} cals) [TEMP TILL BINDING]";
 
             PropertyInfo[] properties = menuItemType.GetProperties();
-            int row = 1;
-            int col = 0;
+            
             foreach (PropertyInfo property in properties)
             {
                 if (property.PropertyType == typeof(bool))
@@ -60,72 +62,63 @@ namespace DinoDiner.PointOfSale
                     CheckBox cb = new CheckBox();
                     cb.Content = property.Name;
                     cb.Name = $"{property.Name}CheckBox";
-                    EntreeCustomizationGrid.Children.Add(cb);
-                    Grid.SetRow(cb, row);
-                    Grid.SetColumn(cb, col);
-                    row++;
-                    if (row > 8)
-                    {
-                        row = 1;
-                        col++;
-                    }
+                    addToGrid(cb);
                 }
             }
             if (customizedItem is Burger)
             {
+                TextBlock pattiesLabel = new TextBlock();
+                pattiesLabel.Text = "# of Patties:";
                 ComboBox pattiesComboBox = new ComboBox();
-                EntreeCustomizationGrid.Children.Add(pattiesComboBox);
                 pattiesComboBox.ItemsSource = new int[5] { 0, 1, 3, 3, 4 };
-                Grid.SetRow(pattiesComboBox, row);
-                Grid.SetColumn(pattiesComboBox, col);
-                row++;
-                if (row > 8)
-                {
-                    row = 1;
-                    col++;
-                }
+                addToGrid(pattiesLabel);
+                addToGrid(pattiesComboBox);
             }
             if (customizedItem is Side || customizedItem is Drink)
             {
+                TextBlock sizeLabel = new TextBlock();
+                sizeLabel.Text = "Size:";
                 ComboBox sizeComboBox = new ComboBox();
-                EntreeCustomizationGrid.Children.Add(sizeComboBox);
                 sizeComboBox.ItemsSource = new ServingSize[3] { ServingSize.Large, ServingSize.Medium, ServingSize.Small };
-                Grid.SetRow(sizeComboBox, row);
-                Grid.SetColumn(sizeComboBox, col);
-                row++;
-                if (row > 8)
-                {
-                    row = 1;
-                    col++;
-                }
+                addToGrid(sizeLabel);
+                addToGrid(sizeComboBox);
             }
             if (customizedItem is Plilosoda)
             {
+                TextBlock flavorLabel = new TextBlock();
+                flavorLabel.Text = "Flavor:";
                 ComboBox flavorComboBox = new ComboBox();
                 EntreeCustomizationGrid.Children.Add(flavorComboBox);
                 flavorComboBox.ItemsSource = new SodaFlavor[5] { SodaFlavor.CherryCola, SodaFlavor.Cola, SodaFlavor.DinoDew, SodaFlavor.DoctorDino, SodaFlavor.LemonLime };
-                Grid.SetRow(flavorComboBox, row);
-                Grid.SetColumn(flavorComboBox, col);
-                row++;
-                if (row > 8)
-                {
-                    row = 1;
-                    col++;
-                }
+                addToGrid(flavorLabel);
+                addToGrid(flavorComboBox);
             }
             if (customizedItem is PterodactylWings)
             {
+                TextBlock sauceLabel = new TextBlock();
+                sauceLabel.Text = "Sauce:";
                 ComboBox sauceComboBox = new ComboBox();
-                EntreeCustomizationGrid.Children.Add(sauceComboBox);
                 sauceComboBox.ItemsSource = new WingSauce[3] { WingSauce.Buffalo, WingSauce.HoneyGlaze, WingSauce.Teriyaki };
-                Grid.SetRow(sauceComboBox, row);
-                Grid.SetColumn(sauceComboBox, col);
-                row++;
-                if (row > 8)
-                {
-                    row = 1;
-                    col++;
-                }
+                addToGrid(sauceLabel);
+                addToGrid(sauceComboBox);
+            }
+        }
+
+
+        /// <summary>
+        /// A helper method to add a UIElement to the grid and update the apropriate parameters
+        /// </summary>
+        /// <param name="menuItem">The item to add</param>
+        private void addToGrid(UIElement menuItem)//, int row, int col)
+        {
+            EntreeCustomizationGrid.Children.Add(menuItem);
+            Grid.SetRow(menuItem, row);
+            Grid.SetColumn(menuItem, col);
+            row++;
+            if (row > 8)
+            {
+                row = 1;
+                col++;
             }
         }
     }

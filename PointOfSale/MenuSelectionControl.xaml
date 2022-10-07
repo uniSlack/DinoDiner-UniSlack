@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:DinoDiner.PointOfSale"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="810">
-    <Grid>
+    <Grid Name="MenuSelectionGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>

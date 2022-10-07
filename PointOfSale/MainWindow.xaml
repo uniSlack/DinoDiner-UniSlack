@@ -20,11 +20,11 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
         <Style TargetType="ComboBox">
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Name="MainWindowGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -39,6 +39,7 @@
         <Button Name="CompleteOrderButton" Grid.Column="1" Grid.Row="1">Complete Order</Button>
         <Button Name="AddMoreItemsButton" Grid.Column="2" Grid.Row="1">Add More Items</Button>
         <local:OrderSummaryControl Grid.Column="3" Grid.RowSpan="2"></local:OrderSummaryControl>
-        <local:ItemCustomizationControl Grid.Column="0" Grid.ColumnSpan="3"></local:ItemCustomizationControl>
+        <!--<local:ItemCustomizationControl Grid.Column="0" Grid.ColumnSpan="3"></local:ItemCustomizationControl>-->
+        <local:MenuSelectionControl x:Name="SelectionControl" Grid.Column="0" Grid.ColumnSpan="3"></local:MenuSelectionControl>
     </Grid>
 </Window>
