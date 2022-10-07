@@ -9,7 +9,7 @@ namespace DinoDiner.Data.Entrees
     /// <summary>
     /// A class representing an Allosaurus All-American Burger
     /// </summary>
-    public class AllosaurusAll_AmericanBurger : Burger
+    public class AllosaurusAllAmericanBurger : Burger
     {
         /// <summary>
         /// The name of the burger
@@ -19,7 +19,7 @@ namespace DinoDiner.Data.Entrees
         /// <summary>
         /// Constructs the Allosaurus All-American Burger
         /// </summary>
-        public AllosaurusAll_AmericanBurger()
+        public AllosaurusAllAmericanBurger()
         {
             Patties = 1;
             Ketchup = true;

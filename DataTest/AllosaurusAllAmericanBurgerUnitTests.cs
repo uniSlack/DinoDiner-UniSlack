@@ -18,7 +18,7 @@ namespace DataTest
         [Fact]
         public void ShouldInheritFromEntree()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.IsAssignableFrom<Entree>(test);
         }
 
@@ -28,7 +28,7 @@ namespace DataTest
         [Fact]
         public void NameShouldBeCorrect()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger() ;
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger() ;
             Assert.Equal("Allosaurus All-American Burger", test.Name);
         }
 
@@ -38,7 +38,7 @@ namespace DataTest
         [Fact]
         public void PriceShouldBeCorrect()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.Equal(2.10m, test.Price);
         }
 
@@ -49,7 +49,7 @@ namespace DataTest
         [Fact]
         public void CaloriesShouldBeCorrect()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.Equal((uint)233, test.Calories);
         }
 
@@ -59,7 +59,7 @@ namespace DataTest
         [Fact]
         public void PattiesShouldDefaultToOne()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.Equal((uint)1, test.Patties);
         }
 
@@ -69,7 +69,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetPatties()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Patties = 3;
             Assert.Equal((uint)3, test.Patties);
         }
@@ -80,7 +80,7 @@ namespace DataTest
         [Fact] 
         public void KetchupShouldDefaultToTrue()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.True(test.Ketchup);
         }
 
@@ -90,7 +90,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetKetchup()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Ketchup = false;
             Assert.False(test.Ketchup);
         }
@@ -101,7 +101,7 @@ namespace DataTest
         [Fact] 
         public void MustardShouldDefaultToTrue()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.True(test.Mustard);
         }
 
@@ -111,7 +111,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetMustard()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Mustard = false;
             Assert.False(test.Mustard);
         }
@@ -122,7 +122,7 @@ namespace DataTest
         [Fact] 
         public void PickleShouldDefaultToTrue()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.True(test.Pickle);
         }
 
@@ -132,7 +132,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetPickle()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Pickle = false;
             Assert.False(test.Pickle);
         }
@@ -143,7 +143,7 @@ namespace DataTest
         [Fact] 
         public void MayoShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Mayo);
         }
         
@@ -153,7 +153,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetMayo()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Mayo = true;
             Assert.True(test.Mayo);
         }
@@ -164,7 +164,7 @@ namespace DataTest
         [Fact] 
         public void BBQShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.BBQ);
         }
 
@@ -174,7 +174,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetBBQ()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.BBQ = true;
             Assert.True(test.BBQ);
         }
@@ -185,7 +185,7 @@ namespace DataTest
         [Fact] 
         public void OnionShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Onion);
         }
 
@@ -195,7 +195,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetOnion()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Onion = true;
             Assert.True(test.Onion);
         }
@@ -206,7 +206,7 @@ namespace DataTest
         [Fact]
         public void TomatoShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Tomato);
         }
 
@@ -216,7 +216,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetTomato()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Tomato = true;
             Assert.True(test.Tomato);
         }
@@ -227,7 +227,7 @@ namespace DataTest
         [Fact]
         public void LettuceShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Lettuce);
         }
 
@@ -237,7 +237,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetLettuce()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Lettuce = true;
             Assert.True(test.Lettuce);
         }
@@ -248,7 +248,7 @@ namespace DataTest
         [Fact]
         public void AmericanCheeseShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.AmericanCheese);
         }
 
@@ -258,7 +258,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetAmericanCheese()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.AmericanCheese = true;
             Assert.True(test.AmericanCheese);
         }
@@ -269,7 +269,7 @@ namespace DataTest
         [Fact] 
         public void SwissCheeseShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.SwissCheese);
         }
 
@@ -279,7 +279,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetSwissCheese()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.SwissCheese = true;
             Assert.True(test.SwissCheese);
         }
@@ -290,7 +290,7 @@ namespace DataTest
         [Fact]
         public void BaconShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Bacon);
         }
 
@@ -300,7 +300,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetBacon()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Bacon = true;
             Assert.True(test.Bacon);
         }
@@ -311,7 +311,7 @@ namespace DataTest
         [Fact]
         public void MushroomsShouldDefaultToFalse()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             Assert.False(test.Mushrooms);
         }
 
@@ -321,7 +321,7 @@ namespace DataTest
         [Fact]
         public void ShouldBeAbleToSetMushrooms()
         {
-            AllosaurusAll_AmericanBurger test = new AllosaurusAll_AmericanBurger();
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Mushrooms = true;
             Assert.True(test.Mushrooms);
         }

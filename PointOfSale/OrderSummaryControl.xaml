@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="DinoDiner.PointOfSale.OrderSummaryControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DinoDiner.PointOfSale"
+             mc:Ignorable="d" 
+             d:DesignHeight="720" d:DesignWidth="270">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height=".5*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="OrderNameTextBlock" TextAlignment="Center" Grid.Row="0">
+            Order #00
+        </TextBlock>
+        <TextBlock Name="DateTextBlock" TextAlignment="Center" Grid.Row="1">
+            11/11/1111
+        </TextBlock>
+        <ListView Name="OrderListView" Grid.Row="2"></ListView>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="SubtotalLabelTextBlock" Grid.Column="0" Grid.Row="0" FontSize="15">
+                Subtotal
+            </TextBlock>
+            <TextBlock Name="TaxLabelTextBlock" Grid.Column="0" Grid.Row="1" FontSize="15">
+                Tax
+            </TextBlock>
+            <TextBlock Name="TotalLabelTextBlock" Grid.Column="0" Grid.Row="2" FontSize="15">
+                Total
+            </TextBlock>
+            <TextBlock Name="SubtotalAmountTextBlock" Grid.Column="1" Grid.Row="0" TextAlignment="Right" FontSize="15">
+                $0.00
+            </TextBlock>
+            <TextBlock Name="TaxAmountTextBlock" Grid.Column="2" Grid.Row="1" TextAlignment="Right" FontSize="15">
+                $0.00
+            </TextBlock>
+            <TextBlock Name="TotalAmountTextBlock" Grid.Column="1" Grid.Row="2" TextAlignment="Right" FontSize="15">
+                $0.00
+            </TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>
