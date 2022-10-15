@@ -1,6 +1,7 @@
 ﻿using DinoDiner.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -324,6 +325,39 @@ namespace DataTest
             AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
             test.Mushrooms = true;
             Assert.True(test.Mushrooms);
+        }
+
+        /// <summary>
+        /// Checks that the data bound properties change
+        /// </summary>
+        /// <param name="size">data to test</param>
+        /// <param name="propertyName">name that we are checking</param>
+        [Theory]
+        [InlineData(ServingSize.Small, "Size")]
+        [InlineData(ServingSize.Medium, "Size")]
+        [InlineData(ServingSize.Large, "Size")]
+        [InlineData(ServingSize.Small, "Price")]
+        [InlineData(ServingSize.Medium, "Price")]
+        [InlineData(ServingSize.Large, "Price")]
+        [InlineData(ServingSize.Small, "Calories")]
+        [InlineData(ServingSize.Medium, "Calories")]
+        [InlineData(ServingSize.Large, "Calories")]
+        public void ChangingSizeShouldNotifyOfPropertyChanges(ServingSize size, string propertyName)
+        {
+            Triceritots tots = new Triceritots();
+            Assert.PropertyChanged(tots, propertyName, () => {
+                tots.Size = size;
+            });
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            AllosaurusAllAmericanBurger test = new AllosaurusAllAmericanBurger();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

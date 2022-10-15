@@ -1,6 +1,7 @@
 ﻿using DinoDiner.Data.Sides;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,6 +122,16 @@ namespace DataTest
             Fryceritops test = new Fryceritops();
             test.Sauce = !test.Sauce;
             Assert.True(test.Sauce);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            Fryceritops test = new Fryceritops();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

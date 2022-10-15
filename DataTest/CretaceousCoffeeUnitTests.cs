@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,16 @@ namespace DataTest
         {
             CretaceousCoffee test = new CretaceousCoffee();
             Assert.False(test.Cream);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            CretaceousCoffee test = new CretaceousCoffee();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

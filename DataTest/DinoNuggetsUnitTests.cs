@@ -1,6 +1,7 @@
 ﻿using DinoDiner.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,6 +103,16 @@ namespace DataTest
             DinoNuggets test = new DinoNuggets();
             test.Count = 8;
             Assert.Equal((uint)8, test.Count);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            DinoNuggets test = new DinoNuggets();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

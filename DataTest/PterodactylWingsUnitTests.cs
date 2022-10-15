@@ -1,6 +1,7 @@
 ﻿using DinoDiner.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,6 +83,16 @@ namespace DataTest
             PterodactylWings test = new PterodactylWings();
             test.Sauce = WingSauce.HoneyGlaze;
             Assert.Equal(WingSauce.HoneyGlaze, test.Sauce);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            PterodactylWings test = new PterodactylWings();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

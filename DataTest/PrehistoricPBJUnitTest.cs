@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace DataTest
 {
     public class PrehistoricPBJUnitTest
@@ -164,6 +166,16 @@ namespace DataTest
             pbj.Jelly = jelly;
             pbj.Toasted = toasted;
             Assert.Equal(name, pbj.Name);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            PrehistoricPBJ test = new PrehistoricPBJ();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

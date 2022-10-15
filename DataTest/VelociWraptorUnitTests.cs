@@ -1,6 +1,7 @@
 ﻿using DinoDiner.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -84,6 +85,7 @@ namespace DataTest
         /// <summary>
         /// Cheese should come on the wrap
         /// </summary>
+        /// [Fact]
         public void CheeseShouldDefaultToTrue()
         {
             VelociWraptor test = new VelociWraptor();
@@ -93,11 +95,22 @@ namespace DataTest
         /// <summary>
         /// Should be able to remove cheese from the order
         /// </summary>
+        /// [Fact]
         public void ShouldBeAbleToSetCheese()
         {
             VelociWraptor test = new VelociWraptor();
             test.Cheese = false;
             Assert.False(test.Cheese);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            VelociWraptor test = new VelociWraptor();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

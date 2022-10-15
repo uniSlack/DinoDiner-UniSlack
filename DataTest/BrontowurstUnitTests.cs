@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,6 +93,16 @@ namespace DataTest
             Brontowurst test = new Brontowurst();
             test.Peppers = false;
             Assert.False(test.Peppers);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            Brontowurst test = new Brontowurst();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

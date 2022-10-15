@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -323,6 +324,16 @@ namespace DataTest
             TRexTriple test = new TRexTriple();
             test.Mushrooms = true;
             Assert.True(test.Mushrooms);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            TRexTriple test = new TRexTriple();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

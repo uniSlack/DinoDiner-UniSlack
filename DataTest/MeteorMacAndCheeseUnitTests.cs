@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,6 +76,16 @@ namespace DataTest
             MeteorMacAndCheese test = new MeteorMacAndCheese();
             test.Size = ServingSize.Large;
             Assert.Equal(ServingSize.Large, test.Size);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            MeteorMacAndCheese test = new MeteorMacAndCheese();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

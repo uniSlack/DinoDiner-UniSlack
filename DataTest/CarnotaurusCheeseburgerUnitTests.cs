@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -323,6 +324,16 @@ namespace DataTest
             CarnotaurusCheeseburger test = new CarnotaurusCheeseburger();
             test.Mushrooms = true;
             Assert.True(test.Mushrooms);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            CarnotaurusCheeseburger test = new CarnotaurusCheeseburger();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

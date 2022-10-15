@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -98,6 +99,16 @@ namespace DataTest
             Plilosoda test = new Plilosoda();
             test.Flavor = SodaFlavor.DinoDew;
             Assert.Equal(SodaFlavor.DinoDew, test.Flavor);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            Plilosoda test = new Plilosoda();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }

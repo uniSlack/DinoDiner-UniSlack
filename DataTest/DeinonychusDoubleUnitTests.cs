@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -323,6 +324,16 @@ namespace DataTest
             DeinonychusDouble test = new DeinonychusDouble();
             test.Mushrooms = false;
             Assert.False(test.Mushrooms);
+        }
+
+        /// <summary>
+        /// Checks that INotifyChanged is implemented
+        /// </summary>
+        [Fact]
+        public void ShouldImplementINotifyChanged()
+        {
+            DeinonychusDouble test = new DeinonychusDouble();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
     }
 }
