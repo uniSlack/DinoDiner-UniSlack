@@ -17,15 +17,45 @@ namespace DinoDiner.Data.Sides
         /// </summary>
         public override string Name { get { return $"{Size} Fryceritops"; } }
 
+
+        /// <summary>
+        /// backing variable
+        /// </summary>
+        private bool _salt = true;
         /// <summary>
         /// True if the Fryceritops have salt on them, defaults to true
         /// </summary>
-        public bool Salt { get; set; } = true;
+        public bool Salt
+        {
+            get { return _salt; }
+            set
+            {
+                _salt = value;
+                OnPropertyChanged("Salt");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Price");
+            }
+        }
 
+        /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _sauce = false;
         /// <summary>
         /// True if the Fryceritops come with fry sauce, defaults to false
         /// </summary>
-        public bool Sauce { get; set; } = false;
+        public bool Sauce
+        {
+            get { return _sauce; }
+            set
+            {
+                _sauce = value;
+                OnPropertyChanged("Sauce");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Price");
+                OnPropertyChanged("Name");
+            }
+        }
 
         /// <summary>
         /// Price of the order based on the the size

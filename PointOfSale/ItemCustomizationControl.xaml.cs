@@ -37,40 +37,62 @@ namespace DinoDiner.PointOfSale
         {
             InitializeComponent();
 
-            // To be set on an event call that creates this screen (or maybe data context?)
-            //dynamic customizedItem = some input
-
-
-            // For temp testing as events are not set up yet, just switch what is commented out to see examples.
-            //dynamic customizedItem;
-            //customizedItem = new AllosaurusAllAmericanBurger();
-            //customizedItem = new Brontowurst();
-            //customizedItem = new Fryceritops();
-            //customizedItem = new Plilosoda();
-            //customizedItem = new PterodactylWings();
-
             Type menuItemType = customizedItem.GetType();
 
-            EntreeCustomizationNameTextBlock.Text = $"{customizedItem.Name} ({customizedItem.Calories} cals) [TEMP TILL BINDING]";
+
+            Binding binding = new Binding("Name");
+            binding.Source = customizedItem;
+            BindingOperations.SetBinding(EntreeCustomizationNameTextBlock, TextBlock.TextProperty, binding);
+            //EntreeCustomizationNameTextBlock.Text = $"{customizedItem.Name} ({customizedItem.Calories} cals) [TEMP TILL BINDING]";
 
             PropertyInfo[] properties = menuItemType.GetProperties();
             
+            // Checks each property of the item and if the prop is a bool it generates a corresponding checkbox
             foreach (PropertyInfo property in properties)
             {
                 if (property.PropertyType == typeof(bool))
                 {
                     CheckBox cb = new CheckBox();
-                    cb.Content = property.Name;
+                    Binding b = new Binding(property.Name); // path parameter is the name of the data property we want to bind from
+                    b.Source = customizedItem; // source is the object the bound property is from
+                    cb.Content = property.Name; 
                     cb.Name = $"{property.Name}CheckBox";
+                    BindingOperations.SetBinding(cb, CheckBox.IsCheckedProperty, b); // sets the object's property, isChecked, to binding b
                     addToGrid(cb);
                 }
+            }
+
+            // Checks for non-bool properties that still need to be created
+            if(customizedItem is DinoNuggets)
+            {
+                TextBlock nuggetsLabel = new TextBlock();
+                nuggetsLabel.Text = "# of Nuggets:";
+                ComboBox nuggetsComboBox = new ComboBox();
+
+                Binding b = new Binding("Count");
+                b.Source = customizedItem;
+                BindingOperations.SetBinding(nuggetsComboBox, ComboBox.SelectedItemProperty, b);
+
+                uint[] options = new uint[51];
+                for (uint i = 0; i < 51; i++)
+                {
+                    options[i] = i;
+                }
+                nuggetsComboBox.ItemsSource = options;
+                addToGrid(nuggetsLabel);
+                addToGrid(nuggetsComboBox);
             }
             if (customizedItem is Burger)
             {
                 TextBlock pattiesLabel = new TextBlock();
                 pattiesLabel.Text = "# of Patties:";
                 ComboBox pattiesComboBox = new ComboBox();
-                pattiesComboBox.ItemsSource = new int[5] { 0, 1, 3, 3, 4 };
+
+                Binding b = new Binding("Patties");
+                b.Source = customizedItem;
+                BindingOperations.SetBinding(pattiesComboBox, ComboBox.SelectedItemProperty, b);
+
+                pattiesComboBox.ItemsSource = new int[5] { 0, 1, 2, 3, 4 };
                 addToGrid(pattiesLabel);
                 addToGrid(pattiesComboBox);
             }
@@ -80,6 +102,11 @@ namespace DinoDiner.PointOfSale
                 sizeLabel.Text = "Size:";
                 ComboBox sizeComboBox = new ComboBox();
                 sizeComboBox.ItemsSource = new ServingSize[3] { ServingSize.Large, ServingSize.Medium, ServingSize.Small };
+
+                Binding b = new Binding("Size");
+                b.Source = customizedItem;
+                BindingOperations.SetBinding(sizeComboBox, ComboBox.SelectedItemProperty, b);
+
                 addToGrid(sizeLabel);
                 addToGrid(sizeComboBox);
             }
@@ -88,7 +115,11 @@ namespace DinoDiner.PointOfSale
                 TextBlock flavorLabel = new TextBlock();
                 flavorLabel.Text = "Flavor:";
                 ComboBox flavorComboBox = new ComboBox();
-                EntreeCustomizationGrid.Children.Add(flavorComboBox);
+
+                Binding b = new Binding("Flavor");
+                b.Source = customizedItem;
+                BindingOperations.SetBinding(flavorComboBox, ComboBox.SelectedItemProperty, b);
+
                 flavorComboBox.ItemsSource = new SodaFlavor[5] { SodaFlavor.CherryCola, SodaFlavor.Cola, SodaFlavor.DinoDew, SodaFlavor.DoctorDino, SodaFlavor.LemonLime };
                 addToGrid(flavorLabel);
                 addToGrid(flavorComboBox);
@@ -97,8 +128,13 @@ namespace DinoDiner.PointOfSale
             {
                 TextBlock sauceLabel = new TextBlock();
                 sauceLabel.Text = "Sauce:";
+
                 ComboBox sauceComboBox = new ComboBox();
+                Binding b = new Binding("Sauce");
+                b.Source = customizedItem;
+
                 sauceComboBox.ItemsSource = new WingSauce[3] { WingSauce.Buffalo, WingSauce.HoneyGlaze, WingSauce.Teriyaki };
+                BindingOperations.SetBinding(sauceComboBox, ComboBox.SelectedItemProperty, b);
                 addToGrid(sauceLabel);
                 addToGrid(sauceComboBox);
             }

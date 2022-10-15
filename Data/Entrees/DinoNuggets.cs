@@ -17,9 +17,24 @@ namespace DinoDiner.Data.Entrees
         public override string Name { get { return $"{Count} Dino Nuggets"; } }
 
         /// <summary>
+        /// backing var
+        /// </summary>
+        public uint _count = 6;
+        /// <summary>
         /// Count of the Dino Nuggets
         /// </summary>
-        public uint Count { get; set; } = 6;
+        public uint Count
+        {
+            get { return _count; }
+            set
+            {
+                _count = value;
+                OnPropertyChanged("Count");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Price");
+                OnPropertyChanged("Name");
+            }
+        }
 
         /// <summary>
         /// Price of the Dino Nuggets calculated per nugget

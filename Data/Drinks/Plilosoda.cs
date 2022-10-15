@@ -13,9 +13,23 @@ namespace DinoDiner.Data.Drinks
     public class Plilosoda : Drink
     {
         /// <summary>
+        /// backing var
+        /// </summary>
+        private SodaFlavor _flavor;
+        /// <summary>
         /// The flavor of the Plilosoda
         /// </summary>
-        public SodaFlavor Flavor { get; set; }
+        public SodaFlavor Flavor
+        {
+            get { return _flavor; }
+            set
+            {
+                _flavor = value;
+                OnPropertyChanged("Size");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Name");
+            }
+        }
 
         /// <summary>
         /// A private method for sorting the SodaFlavor enum into a string with spaces for the name property

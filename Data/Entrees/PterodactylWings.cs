@@ -18,9 +18,23 @@ namespace DinoDiner.Data.Entrees
         public override string Name { get {if(Sauce == WingSauce.HoneyGlaze) { return "Honey Glazed Pterodactyl Wings"; } ; return $"{Sauce} Pterodactyl Wings"; } }
 
         /// <summary>
+        /// backing variable
+        /// </summary>
+        private WingSauce _sauce = WingSauce.Buffalo;
+        /// <summary>
         /// Sauce on the Pterodactyl Wings
         /// </summary>
-        public  WingSauce Sauce { get; set; } = WingSauce.Buffalo;
+        public  WingSauce Sauce
+        {
+            get { return _sauce; }
+            set
+            {
+                _sauce = value;
+                OnPropertyChanged("Sauce");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Name");
+            }
+        }
 
         /// <summary>
         /// Price of the Pterodactyl Wings

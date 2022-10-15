@@ -36,13 +36,41 @@ namespace DinoDiner.Data.Entrees
         }
 
         /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _dressing = true;
+        /// <summary>
         /// True if the Veloci-Wraptor has dressing on it, defaults to true
         /// </summary>
-        public bool Dressing { get; set; } = true;
+        public bool Dressing
+        {
+            get { return _dressing; }
+            set
+            {
+                _dressing = value;
+                OnPropertyChanged("Dressing");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Name");
+            }
+        }
 
+        /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _cheese = true;
         /// <summary>
         /// True if the Veloci-Wraptor has cheese on it, defaults to true
         /// </summary>
-        public bool Cheese { get; set; } = true;
+        public bool Cheese
+        {
+            get { return _cheese; }
+            set
+            {
+                _cheese = value;
+                OnPropertyChanged("Cheese");
+                OnPropertyChanged("Calories");
+                OnPropertyChanged("Price");
+            }
+        }
     }
 }

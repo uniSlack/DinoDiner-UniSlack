@@ -11,19 +11,57 @@
         public override string Name { get; } = "Prehistoric PBJ";
 
         /// <summary>
+        /// private backing variable
+        /// </summary>
+        private bool _peanutButter = true;
+        /// <summary>
         /// Indicates if the PBJ was made with peanut butter
         /// </summary>
-        public bool PeanutButter { get; set; } = true;
+        public bool PeanutButter 
+        { 
+            get { return _peanutButter; }
+            set
+            {
+                _peanutButter = value;
+                OnPropertyChanged("PeanutButter");
+                OnPropertyChanged("Calories");
+            } 
+        }
 
+        /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _jelly = true;
         /// <summary>
         /// Indicates the PBJ was made with jelly
         /// </summary>
-        public bool Jelly { get; set; } = true;
+        public bool Jelly 
+        {
+            get { return _jelly; }
+            set
+            {
+                _jelly = value;
+                OnPropertyChanged("Jelly");
+                OnPropertyChanged("Calories");
+            } 
+        }
 
+        /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _toasted = true;
         /// <summary>
         /// Indicates the PBJ is served toasted
         /// </summary>
-        public bool Toasted { get; set; } = true;
+        public bool Toasted
+        {
+            get { return _toasted; }
+            set
+            {
+                _toasted = value;
+                OnPropertyChanged("Toasted");
+            }
+        }
 
         /// <summary>
         /// The price of the PBJ

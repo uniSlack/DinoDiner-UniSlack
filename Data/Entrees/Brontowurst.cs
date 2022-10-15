@@ -27,13 +27,37 @@ namespace DinoDiner.Data.Entrees
         public override uint Calories { get; } = 512;
 
         /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _onions = true;
+        /// <summary>
         /// True if the Brontowurst has onions, defaulted to true
         /// </summary>
-        public bool Onions { get; set; } = true;
+        public bool Onions
+        {
+            get { return _onions; }
+            set
+            {
+                _onions = value;
+                OnPropertyChanged("Onions");
+            }
+        }
 
+        /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _peppers = true;
         /// <summary>
         /// True if the Brontowurst has peppers, defaulted to true
         /// </summary>
-        public bool Peppers { get; set; } = true;
+        public bool Peppers
+        {
+            get { return _peppers; }
+            set
+            {
+                _peppers = value;
+                OnPropertyChanged("Peppers");
+            }
+        }
     }
 }

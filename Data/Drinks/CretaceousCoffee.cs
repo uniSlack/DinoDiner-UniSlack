@@ -35,9 +35,22 @@ namespace DinoDiner.Data.Drinks
         }
 
         /// <summary>
+        /// backing var
+        /// </summary>
+        private bool _cream = false;
+        /// <summary>
         /// True if the Cretaceous Coffee has cream in it
         /// </summary>
-        public bool Cream { get; set; } = false;
+        public bool Cream
+        {
+            get { return _cream; }
+            set
+            {
+                _cream = value;
+                OnPropertyChanged("Cream");
+                OnPropertyChanged("Calories");
+            }
+        }
 
         /// <summary>
         /// Represents how many calories are in the coffee based on if it has cream in it
