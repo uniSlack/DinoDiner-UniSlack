@@ -6,6 +6,12 @@
              xmlns:local="clr-namespace:DinoDiner.PointOfSale"
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="810">
+    <UserControl.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="2"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </UserControl.Resources>
     <Grid Name="EntreeCustomizationGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

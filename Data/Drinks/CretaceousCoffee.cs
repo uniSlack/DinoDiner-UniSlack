@@ -49,6 +49,10 @@ namespace DinoDiner.Data.Drinks
                 _cream = value;
                 OnPropertyChanged("Cream");
                 OnPropertyChanged("Calories");
+                if (value)
+                {
+                    SpecialInstructions.Add("Hold Cream");
+                }
             }
         }
 

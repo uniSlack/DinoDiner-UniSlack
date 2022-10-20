@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using DinoDiner.Data.MenuItems;
 
 namespace DinoDiner.Data.Entrees
 {
     /// <summary>
     /// A base class for all entrees sold at DinoDiner
     /// </summary>
-    public abstract class Entree : INotifyPropertyChanged
+    public abstract class Entree : MenuItem, INotifyPropertyChanged
     {
         /// <summary>
         /// An event triggered when a property is changed
@@ -25,20 +26,5 @@ namespace DinoDiner.Data.Entrees
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        /// <summary>
-        /// The name of the Entree
-        /// </summary>
-        public abstract string Name { get; }
-
-        /// <summary>
-        /// The price of the Entree
-        /// </summary>
-        public abstract decimal Price { get; }
-
-        /// <summary>
-        /// The calories of the Entree
-        /// </summary>
-        public abstract uint Calories { get; }
     }
 }

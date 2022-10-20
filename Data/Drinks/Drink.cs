@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using DinoDiner.Data.MenuItems;
 
 namespace DinoDiner.Data.Drinks
 {
     /// <summary>
     /// A base class for all drinks
     /// </summary>
-    public abstract class Drink: INotifyPropertyChanged
+    public abstract class Drink: MenuItem, INotifyPropertyChanged
     {
         /// <summary>
         /// An event triggered when a property is changed
@@ -26,11 +27,6 @@ namespace DinoDiner.Data.Drinks
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        /// <summary>
-        /// Name of the drink
-        /// </summary>
-        public abstract string Name { get; }
 
         /// <summary>
         /// backing var
@@ -51,15 +47,5 @@ namespace DinoDiner.Data.Drinks
                 OnPropertyChanged("Name");
             }
         }
-
-        /// <summary>
-        /// Price of the drink based on the size
-        /// </summary>
-        public abstract decimal Price { get; }
-        
-        /// <summary>
-        /// The calories in the drink
-        /// </summary>
-        public abstract uint Calories { get; }
     }
 }

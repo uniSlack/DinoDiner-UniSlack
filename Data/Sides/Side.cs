@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using DinoDiner.Data.MenuItems;
 
 namespace DinoDiner.Data.Sides
 {
     /// <summary>
     /// Base class for sides
     /// </summary>
-    public abstract class Side : INotifyPropertyChanged
+    public abstract class Side : MenuItem, INotifyPropertyChanged
     {
         /// <summary>
         /// An event triggered when a property is changed
@@ -27,10 +28,6 @@ namespace DinoDiner.Data.Sides
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /// <summary>
-        /// Name of the side
-        /// </summary>
-        public abstract string Name { get; }
 
         /// <summary>
         /// backing var
@@ -55,7 +52,7 @@ namespace DinoDiner.Data.Sides
         /// <summary>
         /// Price of the side based on the size
         /// </summary>
-        public virtual decimal Price
+        public override decimal Price
         {
             get
             {
@@ -68,10 +65,5 @@ namespace DinoDiner.Data.Sides
                 }
             }
         }
-
-        /// <summary>
-        /// The calories in the side
-        /// </summary>
-        public abstract uint Calories { get; }
     }
 }
