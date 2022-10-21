@@ -29,30 +29,16 @@ namespace DinoDiner.Data.MenuMangement
         /// </summary>
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
+        /// <summary>
+        /// Tells if the collection is synched
+        /// </summary>
         bool ICollection.IsSynchronized { get { return false; } }
-        object ICollection.SyncRoot { get { return this; } }
-
-        //void ICollection.Clear()
-        //{
-        //    foreach (MenuItem item in _order)
-        //    {
-        //        _order.Remove(item);
-        //    }
-        //}
 
         /// <summary>
-        /// Checks for an item in the collection
+        /// Object for synchronization
         /// </summary>
-        /// <param name="item">item to look for</param>
-        /// <returns>true if the item was found</returns>
-        //bool ICollection<MenuItem>.Contains(MenuItem item)
-        //{
-        //    if (_order.Contains(item))
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
+        object ICollection.SyncRoot { get { return this; } }
+
 
         /// <summary>
         /// Copies this order to an array
@@ -75,11 +61,20 @@ namespace DinoDiner.Data.MenuMangement
 
         //bool ICollection<MenuItem>.IsReadOnly { get; } = false;
 
+        /// <summary>
+        /// Gets the enumerator 
+        /// </summary>
+        /// <returns>a function</returns>
         public IEnumerator GetEnumerator()
         {
             return _orderItems.GetEnumerator();
         }
 
+        /// <summary>
+        /// gets the enumerator used for MenuItems
+        /// </summary>
+        /// <param name="test">an int</param>
+        /// <returns>a function</returns>
         public IEnumerator<MenuItem> GetEnumerator(int test)
         {
             return _orderItems.GetEnumerator();
@@ -90,6 +85,9 @@ namespace DinoDiner.Data.MenuMangement
         /// </summary>
         private List<MenuItem> _orderItems = new List<MenuItem>();
 
+        /// <summary>
+        /// Public list of the items in the order
+        /// </summary>
         public List<MenuItem> OrderItems
         {
             get { return _orderItems; }
@@ -102,7 +100,7 @@ namespace DinoDiner.Data.MenuMangement
         public void Add(MenuItem item)
         {
             _orderItems.Add(item);
-            this.CollectionChanged?.Invoke(this, NotifyCollectionChangedEventArgs(OrderItems));
+            this.CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tax"));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Total"));
@@ -113,9 +111,12 @@ namespace DinoDiner.Data.MenuMangement
         /// Removes a menu item from the collection
         /// </summary>
         /// <param name="item">item to remove</param>
+        /// <returns>true if the action passed</returns>
         public bool Remove(MenuItem item)
         {
+            int index = _orderItems.IndexOf(item);
             _orderItems.Remove(item);
+            this.CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, item, index));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tax"));
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Total"));
@@ -171,11 +172,6 @@ namespace DinoDiner.Data.MenuMangement
         }
 
         /// <summary>
-        /// used to insure unique order numbers
-        /// </summary>
-        private int _nextOrderNumber = 1;
-
-        /// <summary>
         /// Unique number for the order to be identified by
         /// </summary>
         public int Number { get; }
@@ -185,86 +181,10 @@ namespace DinoDiner.Data.MenuMangement
         /// </summary>
         public DateTime PlacedAt = DateTime.Now;
 
-        public Order()
+        public Order(int nextOrderNumber)
         {
-            Number = _nextOrderNumber;
-            _nextOrderNumber++;
-            //this.CollectionChanged += CollectionChangedHelper;
-            //this.PropertyChanged += PropertyChangedHelper;
-        }
-
-        ///// <summary>
-        ///// A helper method to send out propety changed events when the inherited CollectionChanged Event fires
-        ///// </summary>
-        ///// <param name="sender">object that raised the event</param>
-        ///// <param name="e">event args</param>
-        //protected virtual void CollectionChangedHelper(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-        //    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-        //    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tax"));
-        //    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Total"));
-        //    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
-        //}
-
-        ///// <summary>
-        ///// A helper method to send out propety changed events when the inherited PropertyChanged Event fires
-        ///// </summary>
-        ///// <param name="sender">object that raised the event</param>
-        ///// <param name="e">event args</param>
-        ////protected virtual void PropertyChangedHelper(object sender, PropertyChangedEventArgs e)
-        ////{
-        ////    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Subtotal"));
-        ////    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tax"));
-        ////    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Total"));
-        ////    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
-        ////}
-
-
-        ///// <summary>
-        ///// An event triggered when a property is changed
-        ///// </summary>
-        //protected override event PropertyChangedEventHandler PropertyChanged;
-
-        /////// <summary>
-        /////// A helper method to allow inherited classes to access PropertyChanged
-        /////// </summary>
-        /////// <param name="propertyName">The exact name of the property that has changed</param>
-        ////protected virtual void OnPropertyChanged(string propertyName)
-        ////{
-        ////    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        ////}
-    }
-}
-
-public class Enumerator : IEnumerator
-{
-    private List<MenuItem> o;
-    private int Cursor;
-
-    public Enumerator(List<MenuItem> order)
-    {
-        this.o = order;
-        Cursor = -1;
-    }
-
-    void IEnumerator.Reset()
-    {
-        Cursor = -1;
-    }
-    bool IEnumerator.MoveNext()
-    {
-        if (Cursor < o.Count)
-            Cursor++;
-
-        return (!(Cursor == o.Count));
-    }
-    object IEnumerator.Current
-    {
-        get
-        {
-            if ((Cursor < 0) || (Cursor == o.Count))
-                throw new InvalidOperationException();
-            return o[Cursor];
+            Number = nextOrderNumber;
+            nextOrderNumber++;
         }
     }
 }

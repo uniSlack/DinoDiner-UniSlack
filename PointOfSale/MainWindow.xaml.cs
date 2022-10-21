@@ -27,9 +27,15 @@ namespace DinoDiner.PointOfSale
         //TODO temp solution
         private ItemCustomizationControl? itemCustomization { get; set; }
 
+        /// <summary>
+        /// used to insure unique order numbers
+        /// </summary>
+        private int _nextOrderNumber = 1;
+
         public MainWindow()
         {
-            this.DataContext = new Order();
+            this.DataContext = new Order( _nextOrderNumber);
+            _nextOrderNumber++;
             InitializeComponent();
             foreach (UIElement e in SelectionControl.MenuSelectionGrid.Children)
             {
@@ -37,6 +43,12 @@ namespace DinoDiner.PointOfSale
                 {
                     b.Click += this.OnClick;
                 }
+            }
+            if(DataContext is Order dco)
+            {
+                dco.CollectionChanged += OrderSummary.UpdateOrderList;
+                OrderSummary.DateTextBlock.Text = dco.PlacedAt.ToString();
+                OrderSummary.OrderNameTextBlock.Text = $"Order #{dco.Number}";
             }
         }
 
@@ -55,6 +67,7 @@ namespace DinoDiner.PointOfSale
                     dc.Add(selectedItem);
                 }
                 itemCustomization = new ItemCustomizationControl(selectedItem);
+                //selectedItem.
                 Grid.SetColumn(itemCustomization, 0);
                 Grid.SetColumnSpan(itemCustomization, 3);
                 MainWindowGrid.Children.Add(itemCustomization);
@@ -107,11 +120,24 @@ namespace DinoDiner.PointOfSale
         }
 
 
+        /// <summary>
+        /// A click event used to cancel and create a new order
+        /// </summary>
+        /// <param name="sender">sender button</param>
+        /// <param name="e">event args</param>
         public void OnCancelOrderClick(object sender, EventArgs e)
         {
             if (sender is Button senderButton)
             {
-                this.DataContext = new Order();
+                Order dco = new Order(_nextOrderNumber);
+                _nextOrderNumber++;
+                this.DataContext = null; 
+                this.DataContext = dco;
+
+                //Should be static and only update with a new order
+                OrderSummary.DateTextBlock.Text = dco.PlacedAt.ToString();
+                OrderSummary.OrderNameTextBlock.Text = $"Order #{dco.Number}";
+                dco.CollectionChanged += OrderSummary.UpdateOrderList;
             }
         }
     }

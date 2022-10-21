@@ -31,7 +31,11 @@ namespace DinoDiner.Data.MenuMangement
         /// </summary>
         public ICollection<String> SpecialInstructions { get; set; } = new List<String>();
 
-        public string ToString()
+        /// <summary>
+        /// Gives the name of the object
+        /// </summary>
+        /// <returns>the name</returns>
+        public override string ToString()
         {
             return Name;
         }

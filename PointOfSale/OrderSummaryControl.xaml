@@ -14,8 +14,18 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Name="OrderNameTextBlock" TextAlignment="Center" Grid.Row="0" Text="{Binding Path=Number, StringFormat=Order #}"/>
-        <TextBlock Name="DateTextBlock" TextAlignment="Center" Grid.Row="1" Text="{Binding Path=PlacedAt}"/>
-        <ListView Name="OrderListView" Grid.Row="2"/>
+        <TextBlock Name="DateTextBlock" TextAlignment="Center" Grid.Row="1"/>
+        <ListView Name="OrderListView" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        <ListView ItemsSource="{Binding Path=SpecialInstructions}"/>
+                        <TextBlock Text="{Binding Path=Price}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
