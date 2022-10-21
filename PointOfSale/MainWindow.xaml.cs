@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DinoDiner.Data.MenuMangement;
+using System.Collections.Specialized;
 
 namespace DinoDiner.PointOfSale
 {
@@ -67,7 +68,7 @@ namespace DinoDiner.PointOfSale
                     dc.Add(selectedItem);
                 }
                 itemCustomization = new ItemCustomizationControl(selectedItem);
-                //selectedItem.
+                selectedItem.PropertyChanged += OrderSummary.UpdateOrderListFromProp;
                 Grid.SetColumn(itemCustomization, 0);
                 Grid.SetColumnSpan(itemCustomization, 3);
                 MainWindowGrid.Children.Add(itemCustomization);
@@ -138,6 +139,7 @@ namespace DinoDiner.PointOfSale
                 OrderSummary.DateTextBlock.Text = dco.PlacedAt.ToString();
                 OrderSummary.OrderNameTextBlock.Text = $"Order #{dco.Number}";
                 dco.CollectionChanged += OrderSummary.UpdateOrderList;
+                OrderSummary.UpdateOrderList(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
     }

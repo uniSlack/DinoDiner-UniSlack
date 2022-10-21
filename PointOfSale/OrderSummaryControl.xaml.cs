@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,13 +46,25 @@ namespace DinoDiner.PointOfSale
             if(DataContext is Order dco)
             {
                 OrderListView.ItemsSource = null; //forces list to update, it would not before
-                //List<string> formattedSummary = new List<string>();
-                //foreach(Data.MenuMangement.MenuItem item in dco.OrderItems)
-                //{
-                    
-                //}
                 OrderListView.ItemsSource = dco.OrderItems;
-                //TODO clean this up, its a bit of a bandaid solution
+                
+            }
+        }
+
+        /// <summary>
+        /// Called when a property of the collectiong changes, used to update the OrderListView
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">event args</param>
+        public void UpdateOrderListFromProp(object sender, PropertyChangedEventArgs e)
+        {
+            //Binding b = new Binding("OrderItems");
+            //BindingOperations.SetBinding(OrderListView, ListView.ItemsSourceProperty, b);
+            if (DataContext is Order dco)
+            {
+                OrderListView.ItemsSource = null; //forces list to update, it would not before
+                OrderListView.ItemsSource = dco.OrderItems;
+
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,36 @@ namespace DinoDiner.Data.MenuMangement
         public override string ToString()
         {
             return Name;
+        }
+
+        /// <summary>
+        /// An event triggered when a property is changed
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// A helper method to allow inherited classes to access PropertyChanged
+        /// </summary>
+        /// <param name="propertyName">The exact name of the property that has changed</param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            if (propertyName != "Price" && propertyName != "Calories" && propertyName != "Name")
+            {
+                if (this.GetType().GetProperty(propertyName).GetValue(this) is bool value)
+                {
+                    if (value)
+                    {
+                        if (this.SpecialInstructions.Contains($"Hold {propertyName}"))          SpecialInstructions.Remove($"Hold {propertyName}"); //removes any holds
+                        if (!this.SpecialInstructions.Contains($"Add {propertyName}"))          SpecialInstructions.Add($"Add {propertyName}");     //new add if no duplicates
+                    }
+                    else
+                    {
+                        if (this.SpecialInstructions.Contains($"Add {propertyName}"))   SpecialInstructions.Remove($"Add {propertyName}");        //removes any adds
+                        if (!this.SpecialInstructions.Contains($"Hold {propertyName}")) SpecialInstructions.Add($"Hold {propertyName}");      //new hold if no duplicates
+                    }
+                }
+            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
