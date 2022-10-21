@@ -23,6 +23,9 @@ namespace DinoDiner.PointOfSale
         public OrderSummaryControl()
         {
             InitializeComponent();
+            Binding b = new Binding("OrderItems");
+            BindingOperations.SetBinding(OrderListView, ListView.ItemsSourceProperty, b); 
+
         }
     }
 }

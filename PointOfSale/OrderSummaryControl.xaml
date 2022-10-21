@@ -13,13 +13,9 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <TextBlock Name="OrderNameTextBlock" TextAlignment="Center" Grid.Row="0">
-            Order #00
-        </TextBlock>
-        <TextBlock Name="DateTextBlock" TextAlignment="Center" Grid.Row="1">
-            11/11/1111
-        </TextBlock>
-        <ListView Name="OrderListView" Grid.Row="2"></ListView>
+        <TextBlock Name="OrderNameTextBlock" TextAlignment="Center" Grid.Row="0" Text="{Binding Path=Number, StringFormat=Order #}"/>
+        <TextBlock Name="DateTextBlock" TextAlignment="Center" Grid.Row="1" Text="{Binding Path=PlacedAt}"/>
+        <ListView Name="OrderListView" Grid.Row="2"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -39,15 +35,9 @@
             <TextBlock Name="TotalLabelTextBlock" Grid.Column="0" Grid.Row="2" FontSize="15">
                 Total
             </TextBlock>
-            <TextBlock Name="SubtotalAmountTextBlock" Grid.Column="1" Grid.Row="0" TextAlignment="Right" FontSize="15">
-                $0.00
-            </TextBlock>
-            <TextBlock Name="TaxAmountTextBlock" Grid.Column="2" Grid.Row="1" TextAlignment="Right" FontSize="15">
-                $0.00
-            </TextBlock>
-            <TextBlock Name="TotalAmountTextBlock" Grid.Column="1" Grid.Row="2" TextAlignment="Right" FontSize="15">
-                $0.00
-            </TextBlock>
+            <TextBlock Name="SubtotalAmountTextBlock" Grid.Column="1" Grid.Row="0" TextAlignment="Right" FontSize="15" Text="{Binding Path=Subtotal, StringFormat='C'}"/>
+            <TextBlock Name="TaxAmountTextBlock" Grid.Column="2" Grid.Row="1" TextAlignment="Right" FontSize="15" Text="{Binding Path=Tax, StringFormat='C'}"/>
+            <TextBlock Name="TotalAmountTextBlock" Grid.Column="1" Grid.Row="2" TextAlignment="Right" FontSize="15" Text="{Binding Path=Total, StringFormat='C'}"/>
         </Grid>
     </Grid>
 </UserControl>

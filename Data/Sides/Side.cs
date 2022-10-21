@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
-using DinoDiner.Data.MenuItems;
+using DinoDiner.Data.MenuMangement;
 
 namespace DinoDiner.Data.Sides
 {

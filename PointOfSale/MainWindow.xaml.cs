@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DinoDiner.Data.MenuMangement;
 
 namespace DinoDiner.PointOfSale
 {
@@ -28,6 +29,7 @@ namespace DinoDiner.PointOfSale
 
         public MainWindow()
         {
+            this.DataContext = new Order();
             InitializeComponent();
             foreach (UIElement e in SelectionControl.MenuSelectionGrid.Children)
             {
@@ -47,26 +49,17 @@ namespace DinoDiner.PointOfSale
         {
             if (sender is Button senderButton)
             {
-                itemCustomization = new ItemCustomizationControl(CreateMenuItemFromButton(senderButton));
+                DinoDiner.Data.MenuMangement.MenuItem selectedItem = CreateMenuItemFromButton(senderButton);
+                if(this.DataContext is Order dc)
+                {
+                    dc.Add(selectedItem);
+                }
+                itemCustomization = new ItemCustomizationControl(selectedItem);
                 Grid.SetColumn(itemCustomization, 0);
                 Grid.SetColumnSpan(itemCustomization, 3);
                 MainWindowGrid.Children.Add(itemCustomization);
                 SelectionControl.Visibility = Visibility.Hidden;
-                itemCustomization.DataContext = new PrehistoricPBJ();
-            }
-        }
-
-        /// <summary>
-        /// A click event used on the add more items button to close the item selection menu 
-        /// </summary>
-        /// <param name="sender">sender button</param>
-        /// <param name="e">event args</param>
-        public void OnAddMoreItemsClick(object sender, EventArgs e)
-        {
-            if (sender is Button senderButton)
-            {
-                MainWindowGrid.Children.Remove(itemCustomization);
-                SelectionControl.Visibility = Visibility.Visible;
+                itemCustomization.DataContext = selectedItem;
             }
         }
 
@@ -75,7 +68,7 @@ namespace DinoDiner.PointOfSale
         /// </summary>
         /// <param name="b">button that was clicked on</param>
         /// <returns>menu item as an object</returns>
-        private object CreateMenuItemFromButton(Button b)
+        private Data.MenuMangement.MenuItem CreateMenuItemFromButton(Button b)
         {
             ///TODO should probably add the item to a global list so that it can be displayed and tracked
             switch (b.Name)
@@ -97,6 +90,29 @@ namespace DinoDiner.PointOfSale
                 case "CretaceousCoffeeButton": return new CretaceousCoffee();
                 default:    throw new ArgumentException($"Button name: {b.Name}, was unknown in CreateMenuItemFromButton");
             }
-        } 
+        }
+
+        /// <summary>
+        /// A click event used on the add more items button to close the item selection menu 
+        /// </summary>
+        /// <param name="sender">sender button</param>
+        /// <param name="e">event args</param>
+        public void OnAddMoreItemsClick(object sender, EventArgs e)
+        {
+            if (sender is Button senderButton)
+            {
+                MainWindowGrid.Children.Remove(itemCustomization);
+                SelectionControl.Visibility = Visibility.Visible;
+            }
+        }
+
+
+        public void OnCancelOrderClick(object sender, EventArgs e)
+        {
+            if (sender is Button senderButton)
+            {
+                this.DataContext = new Order();
+            }
+        }
     }
 }

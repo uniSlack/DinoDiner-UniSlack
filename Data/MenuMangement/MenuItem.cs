@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DinoDiner.Data.MenuItems
+namespace DinoDiner.Data.MenuMangement
 {
     /// <summary>
     /// A base class for every Menu Item
@@ -30,5 +30,10 @@ namespace DinoDiner.Data.MenuItems
         /// Any special insturctions for a menu item, nullable
         /// </summary>
         public ICollection<String> SpecialInstructions { get; set; } = new List<String>();
+
+        public string ToString()
+        {
+            return Name;
+        }
     }
 }
