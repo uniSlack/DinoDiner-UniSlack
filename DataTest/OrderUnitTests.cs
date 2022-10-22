@@ -21,7 +21,7 @@ namespace DataTest
         [Fact]
         public void AddingItemsWorks()
         {
-            var test = new Order();
+            var test = new Order(0);
             Brontowurst b = new Brontowurst();
             test.Add(b);
             Assert.Equal(b, test.OrderItems[0]);
@@ -33,7 +33,7 @@ namespace DataTest
         [Fact]
         public void RemovingItemsWorks()
         {
-            var test = new Order();
+            var test = new Order(0);
             Brontowurst b = new Brontowurst();
             test.Add(b);
             Assert.Equal(b, test.OrderItems[0]);
@@ -47,7 +47,7 @@ namespace DataTest
         [Fact]
         public void ShouldImplementINotifyPropertyChanged()
         {
-            Order test = new Order();
+            Order test = new Order(0);
             Assert.IsAssignableFrom<INotifyPropertyChanged>(test);
         }
 
@@ -57,14 +57,14 @@ namespace DataTest
         [Fact]
         public void ShouldImplementINotifyCollectionChanged()
         {
-            Order test = new Order();
+            Order test = new Order(0);
             Assert.IsAssignableFrom<INotifyCollectionChanged>(test);
         }
 
         [Fact]
         public void ShouldFireCollectionChangedWhenAdd()
         {
-            var test = new Order();
+            var test = new Order(0);
             Assert.PropertyChanged(test, "Subtotal", () =>
             {
                 test.Add(new Brontowurst());

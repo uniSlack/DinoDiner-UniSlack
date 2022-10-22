@@ -25,7 +25,9 @@ namespace DinoDiner.PointOfSale
     /// </summary>
     public partial class MainWindow : Window
     {
-        //TODO temp solution
+        /// <summary>
+        /// Holds the current itemCustomization menu
+        /// </summary>
         private ItemCustomizationControl? itemCustomization { get; set; }
 
         /// <summary>
@@ -50,6 +52,32 @@ namespace DinoDiner.PointOfSale
                 dco.CollectionChanged += OrderSummary.UpdateOrderList;
                 OrderSummary.DateTextBlock.Text = dco.PlacedAt.ToString();
                 OrderSummary.OrderNameTextBlock.Text = $"Order #{dco.Number}";
+                OrderSummary.OrderListView.SelectionChanged += OnListViewSelection;
+            }
+        }
+
+        /// <summary>
+        /// Called when the ordersummary list view selection changes, opening an itemcustomization screen for the select item
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">event args</param>
+        public void OnListViewSelection(object sender, EventArgs e) 
+        {
+            if(sender is ListView v)
+            {
+                if(v.SelectedItem is DinoDiner.Data.MenuMangement.MenuItem selectedItem)
+                {
+                    //closes any old itemCustomization menus
+                    MainWindowGrid.Children.Remove(itemCustomization);
+                    SelectionControl.Visibility = Visibility.Visible;
+
+                    itemCustomization = new ItemCustomizationControl(selectedItem);
+                    Grid.SetColumn(itemCustomization, 0);
+                    Grid.SetColumnSpan(itemCustomization, 3);
+                    MainWindowGrid.Children.Add(itemCustomization);
+                    SelectionControl.Visibility = Visibility.Hidden;
+                    itemCustomization.DataContext = selectedItem;
+                }
             }
         }
 

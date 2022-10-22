@@ -10,7 +10,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height=".5*"/>
             <RowDefinition Height=".5*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="5.5*"/>
+            <RowDefinition Height=".5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <TextBlock Name="OrderNameTextBlock" TextAlignment="Center" Grid.Row="0" Text="{Binding Path=Number, StringFormat=Order #}"/>
@@ -26,7 +27,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="3">
+        <Button Name="RemoveItemButton" Grid.Row="3" Click="RemoveSelectedItem">Remove Selected Item</Button>
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>

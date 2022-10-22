@@ -25,13 +25,8 @@ namespace DinoDiner.PointOfSale
     {
         public OrderSummaryControl()
         {
-            //DataContext.Event += function to update list?
             InitializeComponent();
             OrderListView.FontSize = 12;
-            //if (DataContext is Order dco)
-            //{
-            //    DateTextBlock.Text = dco.PlacedAt.ToString();
-            //}
         }
 
         /// <summary>
@@ -41,8 +36,6 @@ namespace DinoDiner.PointOfSale
         /// <param name="e">event args</param>
         public void UpdateOrderList(object sender, NotifyCollectionChangedEventArgs e)
         {
-            //Binding b = new Binding("OrderItems");
-            //BindingOperations.SetBinding(OrderListView, ListView.ItemsSourceProperty, b);
             if(DataContext is Order dco)
             {
                 OrderListView.ItemsSource = null; //forces list to update, it would not before
@@ -58,13 +51,29 @@ namespace DinoDiner.PointOfSale
         /// <param name="e">event args</param>
         public void UpdateOrderListFromProp(object sender, PropertyChangedEventArgs e)
         {
-            //Binding b = new Binding("OrderItems");
-            //BindingOperations.SetBinding(OrderListView, ListView.ItemsSourceProperty, b);
             if (DataContext is Order dco)
             {
                 OrderListView.ItemsSource = null; //forces list to update, it would not before
                 OrderListView.ItemsSource = dco.OrderItems;
-
+            }
+        }
+        
+        /// <summary>
+        /// Removes the selected item from the order
+        /// </summary>
+        /// <param name="sender">sender object, should be list view</param>
+        /// <param name="e">Event args</param>
+        public void RemoveSelectedItem(object sender, EventArgs e)
+        {
+            if (sender is Button b && b.Name == "RemoveItemButton")
+            {
+                if(this.DataContext is Order o)
+                {
+                    if (OrderListView.SelectedItem is DinoDiner.Data.MenuMangement.MenuItem item)
+                    {
+                        o.Remove(item);
+                    }
+                }
             }
         }
     }
