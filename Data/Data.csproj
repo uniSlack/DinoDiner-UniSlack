@@ -12,4 +12,10 @@
     <PackageReference Include="KSU.CS.CodeAnalyzers" Version="1.0.3.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="RoundRegister">
+      <HintPath>..\RoundRegister.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

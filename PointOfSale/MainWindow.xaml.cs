@@ -17,6 +17,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DinoDiner.Data.MenuMangement;
 using System.Collections.Specialized;
+using System.ComponentModel.DataAnnotations;
+
+
 
 namespace DinoDiner.PointOfSale
 {
@@ -29,6 +32,11 @@ namespace DinoDiner.PointOfSale
         /// Holds the current itemCustomization menu
         /// </summary>
         private ItemCustomizationControl? itemCustomization { get; set; }
+
+        /// <summary>
+        /// holds the payment options screen
+        /// </summary>
+        private PaymentOptionsScreen? _paymentOptionsScreen = new PaymentOptionsScreen() { Visibility = Visibility.Visible };
 
         /// <summary>
         /// used to insure unique order numbers
@@ -54,6 +62,10 @@ namespace DinoDiner.PointOfSale
                 OrderSummary.OrderNameTextBlock.Text = $"Order #{dco.Number}";
                 OrderSummary.OrderListView.SelectionChanged += OnListViewSelection;
             }
+
+            Grid.SetRow(_paymentOptionsScreen, 0);
+            Grid.SetColumn(_paymentOptionsScreen, 0);
+            Grid.SetColumnSpan(_paymentOptionsScreen, 3);
         }
 
         /// <summary>
@@ -169,6 +181,14 @@ namespace DinoDiner.PointOfSale
                 dco.CollectionChanged += OrderSummary.UpdateOrderList;
                 OrderSummary.UpdateOrderList(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
+        }
+
+
+        public void OnCompleteOrder(object sender, EventArgs e)
+        {
+            //TODO pull up payment selection screen
+            SelectionControl.Visibility = Visibility.Hidden;
+            _paymentOptionsScreen.Visibility = Visibility.Visible;
         }
     }
 }

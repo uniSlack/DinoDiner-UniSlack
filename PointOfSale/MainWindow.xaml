@@ -35,7 +35,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Button Name="CancelOrderButton" Grid.Column="0" Grid.Row="1" Click="OnCancelOrderClick">Cancel Order</Button>
-        <Button Name="CompleteOrderButton" Grid.Column="1" Grid.Row="1">Complete Order</Button>
+        <Button Name="CompleteOrderButton" Grid.Column="1" Grid.Row="1" Click="OnCompleteOrder">Complete Order</Button>
         <Button Name="AddMoreItemsButton" Click="OnAddMoreItemsClick" Grid.Column="2" Grid.Row="1">Add More Items</Button>
         <local:OrderSummaryControl x:Name="OrderSummary" Grid.Column="3" Grid.RowSpan="2"></local:OrderSummaryControl>
         <!--<local:ItemCustomizationControl Grid.Column="0" Grid.ColumnSpan="3"></local:ItemCustomizationControl>-->
