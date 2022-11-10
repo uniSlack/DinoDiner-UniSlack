@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1>Dino Diner</h1>
+    <p>Satisfying dino-sized appetites!</p>
+</div>
+
+<div>
+    <ul>
+        <li >
+            <h2 id="entrees"">Entrees</h2>
+            @foreach (DinoDiner.Data.MenuMangement.MenuItem mi in DinoDiner.Data.MenuMangement.Menu.Entrees)
+            {
+                <div class="menu-item" style="border:2px solid black; margin:4px;">
+                    <p >@mi.Name</p>
+                    <p>Calories: @mi.Calories</p>
+                    <p>Price: @mi.Name</p>
+                </div>
+            }
+        </li>
+        <li >
+            <h2 id="sides"">Sides</h2>
+            @foreach (DinoDiner.Data.MenuMangement.MenuItem mi in DinoDiner.Data.MenuMangement.Menu.Sides)
+            {
+                <div class="menu-item" style="border:2px solid black; margin:4px;">
+                    <p>@mi.Name</p>
+                    <p>Calories: @mi.Calories</p>
+                    <p>Price: @mi.Name</p>
+                </div>
+            }
+        </li>
+        <li>
+            <h2 id="drinks">Drinks</h2>
+            @foreach (DinoDiner.Data.MenuMangement.MenuItem mi in DinoDiner.Data.MenuMangement.Menu.Drinks)
+            {
+                <div class="menu-item" style="border:2px solid black; margin:4px;">
+                    <p>@mi.Name</p>
+                    <p>Calories: @mi.Calories</p>
+                    <p>Price: @mi.Name</p>
+                </div>
+            }
+        </li>
+    </ul>
+</div>
